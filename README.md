@@ -14,6 +14,7 @@ This project involves exploring the High-energy physics citation network. Arxiv 
 ## References:
 
     https://networkx.org/documentation/stable/tutorial.html
+    https://medium.com/data-science-in-your-pocket/community-detection-in-a-graph-using-louvain-algorithm-with-example-7a77e5e4b079
 
 ** For degree centrality, could have plotted in-degree and out-degree centrality seperately to show how many cited and how many cititations
 ** Number of citations doesnt reach 421,578 cause there are some nodes in edges which are out of the network
