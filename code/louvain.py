@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import random
 
 # ---------------- Building the graph -----------------
 
@@ -39,7 +40,7 @@ edges = load_edges()
 G.add_edges_from(edges)
 sorted_years = sorted(year_nodes.keys())
 
-# ---------------- Using louvain algorithm for clustering -----------------
+# --------------------- Using louvain algorithm for clustering ----------------------------------
 
 def louvain_community_detection(G, t, sorted_years, year_nodes, type):
     # t is till which year
@@ -62,8 +63,8 @@ def louvain_community_detection(G, t, sorted_years, year_nodes, type):
     return communities
     
 T = int(input("Enter the year till which you want the clustering of papers to be done: "))
-communities = louvain_community_detection(G, T, sorted_years, year_nodes)
-print(communities)
+# communities = louvain_community_detection(G, T, sorted_years, year_nodes, 1)
+# print(communities)
 
 # using 1% of dataset to plot 
 comm, temp_G = louvain_community_detection(G, T, sorted_years, year_nodes, 2)
@@ -72,7 +73,7 @@ for com, nodes in enumerate(comm):
     for node in nodes:
         community_dict[node] = com
 plt.figure(figsize=(12, 8))
-pos = nx.random_layout(temp_G)
+pos = nx.spring_layout(temp_G)
 colors = [community_dict[node] for node in temp_G.nodes()]
 nx.draw(temp_G, pos, node_color=colors, with_labels=False, node_size=10)
 plt.show()
@@ -117,4 +118,3 @@ plt.title('Size of largest community in Graph Over Time')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-

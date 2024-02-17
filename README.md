@@ -18,6 +18,7 @@ pip install networkx[default]
     https://arxiv.org/pdf/0803.0476.pdf
     https://medium.com/data-science-in-your-pocket/community-detection-in-a-graph-using-louvain-algorithm-with-example-7a77e5e4b079
     https://youtu.be/me3UsMm9QEs?si=_SIvOcKQtsfhFFWw
+    https://medium.com/analytics-vidhya/girvan-newman-the-clustering-technique-in-network-analysis-27fe6d665c92
 
 ** For degree centrality, could have plotted in-degree and out-degree centrality seperately to show how many cited and how many cititations
 ** Number of citations doesnt reach 421,578 cause there are some nodes in edges which are out of the network
