@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # ---------------- Building the graph -----------------
 
 def load_edges():
-    location = "/Cit-HepPh.txt"
+    location = "../dataset/Cit-HepPh.txt"
     edges = []
     with open(location, 'r') as f:
         next(f)
@@ -20,7 +20,7 @@ def load_edges():
 def load_dates():
     G = nx.DiGraph()
     store = {}
-    location = "/cit-HepPh-dates.txt"
+    location = "../dataset/cit-HepPh-dates.txt"
     with open(location, 'r') as f:
         next(f)
         for line in f:
@@ -41,7 +41,7 @@ sorted_years = sorted(year_nodes.keys())
 
 # ---------------- Using louvain algorithm for clustering -----------------
 
-def louvain_community_detection(G, t, sorted_years, year_nodes):
+def louvain_community_detection(G, t, sorted_years, year_nodes, type):
     # t is till which year
     here = []
     for cur_year in sorted_years:
@@ -51,6 +51,12 @@ def louvain_community_detection(G, t, sorted_years, year_nodes):
             if node not in here:
                 here.append(node)
     cur_graph = G.subgraph(here)
+    if(type == 2):
+      num_nodes = int(0.01 * len(G.nodes))
+      random_nodes = random.sample(G.nodes, num_nodes)
+      temp_G = G.subgraph(random_nodes)
+      comm = nx.community.louvain_communities(temp_G)
+      return (comm, temp_G)
     communities = nx.community.louvain_communities(cur_graph)
     # returns a list of tuples [{}, {}]
     return communities
@@ -59,7 +65,19 @@ T = int(input("Enter the year till which you want the clustering of papers to be
 communities = louvain_community_detection(G, T, sorted_years, year_nodes)
 print(communities)
 
-# Lets plot the number of clusters over time
+# using 1% of dataset to plot 
+comm, temp_G = louvain_community_detection(G, T, sorted_years, year_nodes, 2)
+community_dict = {}
+for com, nodes in enumerate(comm):
+    for node in nodes:
+        community_dict[node] = com
+plt.figure(figsize=(12, 8))
+pos = nx.random_layout(temp_G)
+colors = [community_dict[node] for node in temp_G.nodes()]
+nx.draw(temp_G, pos, node_color=colors, with_labels=False, node_size=10)
+plt.show()
+
+# --------------- the number of clusters over time ------------------
 here = []
 num_of_communities = []
 for cur_year in sorted_years:
@@ -78,7 +96,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
-# Lets plot the size of the largest cluster over time
+# ----------------- the size of the largest cluster over time -----------------
 here = []
 largest_communities = []
 for cur_year in sorted_years:
@@ -99,5 +117,4 @@ plt.title('Size of largest community in Graph Over Time')
 plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
-
 
