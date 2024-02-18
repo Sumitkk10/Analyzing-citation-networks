@@ -11,12 +11,17 @@ pip install networkx[default]
 ### Exploration.py:
 1) Run exploration.py from code directory of this repository.
 2) The dataset is huge and the code may not run locally because of compute constraints. So it is recommened to run the code on google colab.
+3) Various graphs have been plotted which are explained in the detailed report.
+4) I have used ```matplotlib``` to plot all the graphs.
 
-### node2vec.py:
-1) Make sure you install `node2vec` package in your python environment. You can use the following on terminal:
-```
-pip install node2vec
-```
+### louvain.py:
+1) Various graphs have been plotted which are explained in the detailed report.
+2) I have used ```random``` module to randomly choose 1% of the dataset to plot communities.
+
+### girvan_newman.py:
+1) The computational complexity is pretty high for this algorithm.
+2) As a user input, you can give till which year do you want to find the communities and it will return a plot of different communities.
+3) Various graphs have been plotted which are explained in the detailed report.
 
 ## References:
 
