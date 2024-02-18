@@ -12,6 +12,12 @@ pip install networkx[default]
 1) Run exploration.py from code directory of this repository.
 2) The dataset is huge and the code may not run locally because of compute constraints. So it is recommened to run the code on google colab.
 
+### node2vec.py:
+1) Make sure you install `node2vec` package in your python environment. You can use the following on terminal:
+```
+pip install node2vec
+```
+
 ## References:
 
     https://networkx.org/documentation/stable/tutorial.html
@@ -19,6 +25,4 @@ pip install networkx[default]
     https://medium.com/data-science-in-your-pocket/community-detection-in-a-graph-using-louvain-algorithm-with-example-7a77e5e4b079
     https://youtu.be/me3UsMm9QEs?si=_SIvOcKQtsfhFFWw
     https://medium.com/analytics-vidhya/girvan-newman-the-clustering-technique-in-network-analysis-27fe6d665c92
-
-** For degree centrality, could have plotted in-degree and out-degree centrality seperately to show how many cited and how many cititations
-** Number of citations doesnt reach 421,578 cause there are some nodes in edges which are out of the network
+    https://stellargraph.readthedocs.io/en/stable/demos/link-prediction/node2vec-link-prediction.html

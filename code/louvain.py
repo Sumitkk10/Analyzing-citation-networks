@@ -63,8 +63,8 @@ def louvain_community_detection(G, t, sorted_years, year_nodes, type):
     return communities
     
 T = int(input("Enter the year till which you want the clustering of papers to be done: "))
-# communities = louvain_community_detection(G, T, sorted_years, year_nodes, 1)
-# print(communities)
+communities = louvain_community_detection(G, T, sorted_years, year_nodes, 1)
+print(communities)
 
 # using 1% of dataset to plot 
 comm, temp_G = louvain_community_detection(G, T, sorted_years, year_nodes, 2)
